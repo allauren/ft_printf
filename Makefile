@@ -6,99 +6,45 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/24 11:50:09 by allauren          #+#    #+#              #
-#    Updated: 2017/11/25 05:39:01 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/25 21:02:01 by allauren         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+SRCS = options.c print_numbers.c string.c   utils.c utils2.c\
+	   ft_itoabase.c  parsing.c  printf.c stritostr.c \
 
-NAME = libftprintf.a 
-
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address 
-
-LIB = libft/libft.a
-
-SRC = string.c parsing.c ft_itoabase.c stritostr.c printf.c options.c utils.c\
-	  print_numbers.c 
-SRC2=./libft/ft_atoi.c\
-	./libft/ft_rev_params.c\
-	./libft/ft_bzero.c\
-	./libft/ft_isalpha.c\
-	./libft/ft_isdigit.c\
-	./libft/ft_isalnum.c\
-	./libft/ft_isascii.c\
-	./libft/ft_isprint.c\
-	./libft/ft_itoa.c\
-	./libft/ft_itoabase.c\
-	./libft/ft_lstadd.c\
-	./libft/ft_lstdel.c\
-	./libft/ft_lstdelone.c\
-	./libft/ft_lstnew.c\
-	./libft/ft_lstmap.c\
-	./libft/ft_lstiter.c\
-	./libft/ft_memalloc.c\
-	./libft/ft_memccpy.c\
-	./libft/ft_memchr.c\
-	./libft/ft_memcmp.c\
-	./libft/ft_memcpy.c\
-	./libft/ft_memdel.c\
-	./libft/ft_memmove.c\
-	./libft/ft_memset.c\
-	./libft/ft_putchar.c\
-	./libft/ft_putchar_fd.c\
-	./libft/ft_putendl.c\
-	./libft/ft_putendl_fd.c\
-	./libft/ft_putnbr.c\
-	./libft/ft_putnbr_fd.c\
-	./libft/ft_putstr.c\
-	./libft/ft_putstr_fd.c\
-	./libft/ft_strlen.c\
-	./libft/ft_strdup.c\
-	./libft/ft_strcpy.c\
-	./libft/ft_strncpy.c\
-	./libft/ft_strcat.c\
-	./libft/ft_strncat.c\
-	./libft/ft_strlcat.c\
-	./libft/ft_strchr.c\
-	./libft/ft_strrchr.c\
-	./libft/ft_strstr.c\
-	./libft/ft_strnstr.c\
-	./libft/ft_strcmp.c\
-	./libft/ft_strncmp.c\
-	./libft/ft_toupper.c\
-	./libft/ft_tolower.c\
-	./libft/ft_strnew.c\
-	./libft/ft_strdel.c\
-	./libft/ft_strclr.c\
-	./libft/ft_striter.c\
-	./libft/ft_striteri.c\
-	./libft/ft_strmap.c\
-	./libft/ft_strmapi.c\
-	./libft/ft_strequ.c\
-	./libft/ft_strnequ.c\
-	./libft/ft_strsub.c\
-	./libft/ft_strjoin.c\
-	./libft/ft_strtrim.c\
-	./libft/ft_strsplit.c\
-
-OBJ =*.o 
+CFLAGS =-g3 -c -Wall -Wextra -Werror
+FLAGS  = -g3 -Wall -Wextra -Werror
+TEST = printf
+INCLUDES = printf.h
+CC = gcc
+LN = ar
+LFLAGS = rc
+LIBOPTIMIZER = ranlib
+OBJS = $(SRCS:.c=.o)
+NAME = libftprintf.a
+LIBFT = libft/libft.a
 
 all: $(NAME)
-
-$(NAME): 
-	@gcc -c $(FLAGS) $(SRC) $(SRC2)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-
-
-#	gcc $(FLAGS) $(LIB) $(SRC) -o $(NAME)
-#	@ar rc $(NAME) $(OBJ)
-#	@ranlib $(NAME)
-
+$(NAME): $(LIBFT) $(OBJS) $(INCLUDES)
+	@printf "\r\033[K[PRINTF] \033[0;32mLinking...\033[0m"
+	@cp $(LIBFT) $(NAME)
+	@$(LN) $(LFLAGS) $(NAME) $(OBJS)
+	@printf "\r\033[K[PRINTF] \033[0;32mDone!\033[0m\n"
+$(LIBFT):
+	@$(MAKE) -C libft/
+%.o: %.c
+	@printf "\r\033[K[PRINTF] \033[0;32mBuilding $<\033[0m"
+	@$(CC) $(CFLAGS) $< -o $@
+test: $(SRCS)
+	gcc $(FLAGS) $(LIBFT) $(SRCS) -o$(TEST)
 clean:
-	@rm -f $(OBJ)
+	@$(MAKE) -C libft/ clean
+	@rm -f $(OBJS)
+	@printf "[PRINTF] \033[1;31mCleaned .o!\033[0m\n"
 
 fclean: clean
+	@$(MAKE) -C libft/ fclean
 	@rm -f $(NAME)
-
+	@printf "[PRINTF] \033[1;31mCleaned all!\033[0m\n"
 re: fclean all
-
 .PHONY: all clean fclean re
+	# **************************************************************************** #

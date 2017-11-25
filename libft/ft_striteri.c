@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fonctions.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 10:42:50 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/24 13:31:17 by allauren         ###   ########.fr       */
+/*   Created: 2017/10/11 01:16:21 by allauren          #+#    #+#             */
+/*   Updated: 2017/11/09 06:14:53 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "printf.h"
 
-void	printf_to_limit(char *str , int i)
+#include "libft.h"
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	write(1, str, i);
-}
+	unsigned int i;
 
+	i = 0;
+	while (f && s && s[i])
+	{
+		(f)(i, &s[i]);
+		i++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 10:43:23 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/25 04:31:41 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/25 18:29:38 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static int		set_option(char *option, t_option *s)
 		s->plus = 1;
 	else if(*option == '-' && (i = 1))
 		s->moins = 1;
-	if(s->moins)
-		s->zero = 0;
 	return(i);
 }
 
