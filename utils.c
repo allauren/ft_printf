@@ -6,9 +6,10 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 18:19:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 03:01:24 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/26 04:30:21 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "printf.h"
 
 int		ft_sizenum(t_ull nb, int base)
@@ -16,10 +17,10 @@ int		ft_sizenum(t_ull nb, int base)
 	int		i;
 
 	i = 0;
-	while((nb = nb / base))
+	while ((nb = nb / base))
 		i++;
 	i++;
-	return(i);
+	return (i);
 }
 
 unsigned long long absolute_value(long long i)
@@ -34,20 +35,20 @@ unsigned long long ft_is_negative(long long nb)
 		absolute_value(nb);
 		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 char	*isplus(char *str, int *nb, t_option *s)
 {
 	char	*new;
 
-	if(!(new = ft_memalloc(ft_strlen(str) - s->zero+ 1)))
+	if (!(new = ft_memalloc(ft_strlen(str) - s->zero+ 1)))
 		return (NULL);
-	if(*nb == 1)
+	if (*nb == 1)
 		new[0] = '-';
-	else if(s->space)
+	else if (s->space)
 		new[0] = ' ';
-	else if((*nb = 1))
+	else if ((*nb = 1))
 		new[0] = '+';
 	ft_strcat(new, str);
 	free(str);
@@ -58,38 +59,41 @@ char	*ft_ishash(char *str)
 {
 	char	*new;
 
-	if(ft_atoi(str))
+	if (ft_atoi(str))
 	{
-	if(!(new = ft_memalloc(ft_strlen(str) + 3)))
-		return(NULL);
-	new[0] = '0';
-	new[1] = 'X';
-	ft_strcat(new, str);
-	free(str);
-	return(new);
+		if (!(new = ft_memalloc(ft_strlen(str) + 3)))
+			return (NULL);
+		new[0] = '0';
+		new[1] = 'X';
+		ft_strcat(new, str);
+		free(str);
+		return (new);
 	}
-	return(str);
+	return (str);
 }
+
 char	*ft_ishasho(char *str)
 {
 	char	*new;
 
-	if(!(new = ft_memalloc(ft_strlen(str) + 2)))
-		return(NULL);
+	if (!(new = ft_memalloc(ft_strlen(str) + 2)))
+		return (NULL);
 	new[0] = '0';
 	ft_strcat(new, str);
 	free(str);
-	return(new);
+	return (new);
 }
+
 void	ft_strtolower(char *str)
 {
 	unsigned int i;
 
 	i = -1;
-	while(str[++i])
-		if(str[i] >= 'A' && str[i])
-				str[i] = ft_tolower(str[i]);
+	while (str[++i])
+		if (str[i] >= 'A' && str[i])
+			str[i] = ft_tolower(str[i]);
 }
+
 char	*iszero(char *str, t_option *s, int i)
 {
 	char	*new;
@@ -97,36 +101,36 @@ char	*iszero(char *str, t_option *s, int i)
 
 	len = 0;
 	new = NULL;
-	if(s->precision > (int)ft_strlen(str))
+	if (s->precision > (int)ft_strlen(str))
 	{
-		if(!(new = ft_memalloc(s->precision + 1)))
+		if (!(new = ft_memalloc(s->precision + 1)))
 			return NULL;
 		new[s->precision - (int)ft_strlen(str)] = '\0';
 		ft_memset(new, '0', s->precision - (int)ft_strlen(str));
 	}
-	else if(s->precision == -1 && s->length > (int)ft_strlen(str))
+	else if (s->precision == -1 && s->length > (int)ft_strlen(str))
 	{
-		if(!(new = ft_memalloc(s->length + 1 - s->plus)))
+		if (!(new = ft_memalloc(s->length + 1 - s->plus)))
 			return NULL;
-		if(i != 1 || s->plus || s->hash)
-		len = s->length - s->plus - (int)ft_strlen(str) -(s->hash * 2);
+		if (i != 1 || s->plus || s->hash)
+			len = s->length - s->plus - (int)ft_strlen(str) -(s->hash * 2);
 		else
-		len = s->length - s->plus - (int)ft_strlen(str) - i;
+			len = s->length - s->plus - (int)ft_strlen(str) - i;
 		new[len] = '\0';
 		ft_memset(new, '0', len);
-		if(s->space && !s->plus)
+		if (s->space && !s->plus)
 			new[0] = ' ';
 	}
-	if(new)
+	if (new)
 	{
 		ft_strcat(new, str);
 		free(str);
 		return (new);
 	}
-	if(s->precision == 0 && ft_atoi(str) == 0)
+	if (s->precision == 0 && ft_atoi(str) == 0)
 	{
-		return(new = ft_memalloc(1));
+		return (new = ft_memalloc(1));
 	}
-	return(str);
+	return (str);
 }
 

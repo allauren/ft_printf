@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 13:46:04 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 03:35:11 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/26 04:20:31 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -22,9 +22,9 @@ int		ft_printf(const char* format, ...)
 	j = 0;
 	ret = 0;
 	va_start(ap, format);
-	while(format[i])
+	while (format[i])
 	{
-		if(format[i] == '%')
+		if (format[i] == '%')
 		{
 			if (j - i++ != 0)
 			{
@@ -37,14 +37,14 @@ int		ft_printf(const char* format, ...)
 		else
 			i++;
 	}
-	if(format[j])
+	if (format[j])
 	{
 	ret += (i - j);
 	ft_putstr(&format[j]);
 	}
 //	printf("\n%d la valeur de sortie est\n", ret);
 	va_end(ap);
-	return(ret);
+	return (ret);
 }
 
 
