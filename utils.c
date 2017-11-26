@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 18:19:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/25 18:38:08 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/26 03:01:24 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -53,15 +53,43 @@ char	*isplus(char *str, int *nb, t_option *s)
 	free(str);
 	return (new);
 }
-/*char	*ft_nul(char *str, t_option *s)
-  {
-  char	*new;
 
-  new = NULL;
-  return(str);
+char	*ft_ishash(char *str)
+{
+	char	*new;
 
-  }*/
+	if(ft_atoi(str))
+	{
+	if(!(new = ft_memalloc(ft_strlen(str) + 3)))
+		return(NULL);
+	new[0] = '0';
+	new[1] = 'X';
+	ft_strcat(new, str);
+	free(str);
+	return(new);
+	}
+	return(str);
+}
+char	*ft_ishasho(char *str)
+{
+	char	*new;
 
+	if(!(new = ft_memalloc(ft_strlen(str) + 2)))
+		return(NULL);
+	new[0] = '0';
+	ft_strcat(new, str);
+	free(str);
+	return(new);
+}
+void	ft_strtolower(char *str)
+{
+	unsigned int i;
+
+	i = -1;
+	while(str[++i])
+		if(str[i] >= 'A' && str[i])
+				str[i] = ft_tolower(str[i]);
+}
 char	*iszero(char *str, t_option *s, int i)
 {
 	char	*new;
@@ -80,8 +108,8 @@ char	*iszero(char *str, t_option *s, int i)
 	{
 		if(!(new = ft_memalloc(s->length + 1 - s->plus)))
 			return NULL;
-		if(i != 1 || s->plus)
-		len = s->length - s->plus - (int)ft_strlen(str);
+		if(i != 1 || s->plus || s->hash)
+		len = s->length - s->plus - (int)ft_strlen(str) -(s->hash * 2);
 		else
 		len = s->length - s->plus - (int)ft_strlen(str) - i;
 		new[len] = '\0';

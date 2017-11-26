@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 13:46:04 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/25 18:51:34 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/26 03:35:11 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -42,7 +42,7 @@ int		ft_printf(const char* format, ...)
 	ret += (i - j);
 	ft_putstr(&format[j]);
 	}
-	//printf("\n%d la valeur de sortie est\n", ret);
+//	printf("\n%d la valeur de sortie est\n", ret);
 	va_end(ap);
 	return(ret);
 }
@@ -53,9 +53,9 @@ int		ft_printf(const char* format, ...)
 int main(void)
 {
 	int i = 0;
-	//ft_printf("%d et le string est %s", 2147483648,"les oiseaux");
-	//i = printf("%d et le string est %s",-2147483648, "les oiseaux");
+	ft_printf("%c et le string est %s\n",0,  "les oiseaux");
+	i = printf("%c et le string est %s\n",0, "les oiseaux");
 	printf("\n%d alors que la vraie est\n", i);
 	return 0;
-}
-*/
+}*/
+

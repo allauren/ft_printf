@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:27:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/25 21:00:55 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/26 03:03:42 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,23 @@ char	*iszero(char *str, t_option *s,int);
 char	*isplus(char *str, int *nb, t_option*);
 int		printf_string(va_list ap, t_option *s, t_size *l);
 void	printf_to_limit(char *str , int i);
-void printf_carac(int len, char c);
+int		printf_pourcent(va_list ap, t_option *s, t_size *l);
+void	printf_carac(int len, char c);
+int		printf_char(va_list ap, t_option *s, t_size *l);
 int				ft_parse(const char* format, va_list ap, int*);
+char	*ft_ishash(char *str);
+void	ft_strtolower(char *str);
 int				ft_stritostr(const char *str1, const char *str2);
 int				ft_setoption(char *option, t_option *s,t_size *l);
 int		printf_numbers(va_list ap, t_option *s, t_size *l);
+int		printf_unumbers(va_list ap, t_option *s, t_size *l);
 void			printf_to_limit(char*str , int i);
 int		printf_OCT(va_list ap, t_option *s, t_size *l);
+int		printf_Unumbers(va_list ap, t_option *s, t_size *l);
 int		printf_oct(va_list ap, t_option *s, t_size *l);
 int		printf_HEX(va_list ap, t_option *s, t_size *l);
 int		printf_hex(va_list ap, t_option *s, t_size *l);
+char	*ft_ishasho(char *str);
 unsigned long long ft_parse_size(va_list ap, t_size *l);
 unsigned long long ft_parseu_size(va_list ap, t_size *l);
 #endif
