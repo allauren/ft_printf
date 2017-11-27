@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 04:50:53 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 03:52:34 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 	tab[9] = set_struct('O', printf_OCT);
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
-	tab[12] = set_struct('s', printf_string);
+	tab[12] = set_struct('C', printf_string);
 	tab[13] = set_struct('\0', NULL);
 	while (tab[i].c != c)
 		i++;
