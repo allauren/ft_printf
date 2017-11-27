@@ -6,7 +6,7 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/24 11:50:09 by allauren          #+#    #+#              #
-#    Updated: 2017/11/27 06:20:32 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/27 06:26:09 by allauren         ###   ########.fr        #
 #                                                                              #
 SRCS = options.c print_numbers.c string.c   utils.c utils2.c\
 	   ft_itoabase.c  parsing.c  printf.c stritostr.c \
@@ -28,6 +28,7 @@ $(NAME): $(LIBFT) $(OBJS) $(INCLUDES)
 	@printf "\r\033[K[PRINTF] \033[0;32mLinking...\033[0m"
 	@cp $(LIBFT) $(NAME)
 	@$(LN) $(LFLAGS) $(NAME) $(OBJS)
+	@$(LIBOPTIMIZER) $(NAME)
 	@printf "\r\033[K[PRINTF] \033[0;32mDone!\033[0m\n"
 $(LIBFT):
 	@$(MAKE) -C libft/
