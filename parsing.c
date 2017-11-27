@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 05:15:45 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 21:54:06 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_convert		set_struct(char c, int (*f)(va_list ap, t_option *s, t_size *l))
 
 int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 {
-	t_convert	tab[14];
+	t_convert	tab[15];
 	int			i;
 
 	i = 0;
@@ -36,15 +36,16 @@ int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 	tab[6] = set_struct('x', printf_hex);
 	tab[7] = set_struct('X', printf_HEX);
 	tab[8] = set_struct('o', printf_oct);
-	tab[9] = set_struct('O', printf_oct);
+	tab[9] = set_struct('O', printf_OCT);
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
 	tab[12] = set_struct('C', printf_char);
 	tab[12] = set_struct('p', printf_p);
-	tab[13] = set_struct('\0', NULL);
+	tab[13] = set_struct('S', printf_string);
+	tab[14] = set_struct('\0', NULL);
 	while (tab[i].c != c)
 		i++;
-	if(i < 13)
+	if(i < 14)
 	*ret += tab[i].f(ap, s, l);
 	return (1);
 }

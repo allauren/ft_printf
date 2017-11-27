@@ -6,10 +6,12 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/24 11:50:09 by allauren          #+#    #+#              #
-#    Updated: 2017/11/25 21:46:48 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/27 20:53:22 by allauren         ###   ########.fr        #
 #                                                                              #
 SRCS = options.c print_numbers.c string.c   utils.c utils2.c\
-	   ft_itoabase.c  parsing.c  printf.c stritostr.c \
+	   ft_itoabase.c  parsing.c  printf.c stritostr.c 
+SRCS2 = options.c print_numbers.c string.c   utils.c utils2.c\
+	   ft_itoabase.c main.c  parsing.c  printf.c stritostr.c 
 
 CFLAGS =-g3 -c -Wall -Wextra -Werror
 FLAGS  = -g3 -Wall -Wextra 
@@ -34,8 +36,8 @@ $(LIBFT):
 %.o: %.c
 	@printf "\r\033[K[PRINTF] \033[0;32mBuilding $<\033[0m"
 	@$(CC) $(CFLAGS) $< -o $@
-test: $(SRCS)
-	gcc $(FLAGS) $(LIBFT) $(SRCS) -o$(TEST)
+test: 
+	gcc $(FLAGS) $(SRCS2) $(LIBFT) -o $(TEST)
 clean:
 	@$(MAKE) -C libft/ clean
 	@rm -f $(OBJS)

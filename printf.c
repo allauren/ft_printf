@@ -6,11 +6,10 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 13:46:04 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 03:47:59 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 22:24:04 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
-
 int		ft_printf(const char* format, ...)
 {
 	int		i;
@@ -24,7 +23,7 @@ int		ft_printf(const char* format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
 			if (j - i++ != 0)
 			{
@@ -37,12 +36,11 @@ int		ft_printf(const char* format, ...)
 		else
 			i++;
 	}
-	if (format[j])
+	if (format[j] && format[j] != '%')
 	{
 	ret += (i - j);
 	ft_putstr(&format[j]);
 	}
-//	printf("\n%d la valeur de sortie est\n", ret);
 	va_end(ap);
 	return (ret);
 }
@@ -53,9 +51,9 @@ int		ft_printf(const char* format, ...)
 int main(void)
 {
 	int i = 0;
-	ft_printf("%c et le string est %s\n",0,  "les oiseaux");
-	i = printf("%c et le string est %s\n",0, "les oiseaux");
+	ft_printf("{% 03d}", -1);
+	i = printf("{% 03d}", -1);
 	printf("\n%d alors que la vraie est\n", i);
 	return 0;
-}*/
-
+}
+*/

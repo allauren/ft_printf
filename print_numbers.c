@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 17:50:39 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 06:15:56 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 22:21:03 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		printf_dnumbers(va_list ap, t_option *s, t_size *l)
 	num = ft_parsel_size(ap, l) ;
 	i = 0;
 	len = 0;
+	//printf("num vaut %llu", num);
 	if (ft_is_negative(num) && (i = 1))
 		num = absolute_value(num);
 	else
@@ -246,15 +247,13 @@ int		printf_OCT(va_list ap, t_option *s, t_size *l)
 {
 	int len;
 	unsigned long long num;
-	int i;
 	char	*str;
 
 	num = ft_parseul_size(ap, l) ;
-	i = 0;
 	len = 0;
 	str = ft_itoa_base(num, 8);
 	if (s->precision != -1 || s->zero != 0)
-		str = iszero(str, s, i);
+		str = iszero(str, s, 0);
 	if (s->hash)
 		str = ft_ishasho(str);
 	len = ft_strlen(str);
@@ -278,19 +277,13 @@ int		printf_oct(va_list ap, t_option *s, t_size *l)
 {
 	int len;
 	unsigned long long num;
-	int i;
 	char	*str;
 
-	num = ft_parse_size(ap, l) ;
-	i = 0;
+	num = ft_parseu_size(ap, l) ;
 	len = 0;
-	if (ft_is_negative(num) && (i = 1))
-		num = absolute_value(num);
-	else
-		i = 2;
 	str = ft_itoa_base(num, 8);
-	if (s->precision != -1 || s->zero != 0)
-		str = iszero(str, s, i);
+	if (s->precision > 0 || (s->precision != -1 && !s->hash) || s->zero != 0)
+		str = iszero(str, s, 0);
 	if (s->hash)
 		str = ft_ishasho(str);
 	len = ft_strlen(str);

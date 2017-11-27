@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 18:19:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 06:15:58 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 21:54:38 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ unsigned long long absolute_value(long long i)
 unsigned long long ft_is_negative(long long nb)
 {
 	if (nb < 0)
-	{
-		absolute_value(nb);
 		return (1);
-	}
 	return (0);
 }
 
@@ -56,7 +53,7 @@ char				*ft_isp(char *str)
 char	*isplus(char *str, int *nb, t_option *s)
 {
 	char	*new;
-
+	
 	if (!(new = ft_memalloc(ft_strlen(str) - s->zero+ 1)))
 		return (NULL);
 	if (*nb == 1)
@@ -91,13 +88,18 @@ char	*ft_ishasho(char *str)
 {
 	char	*new;
 
+	if(ft_atoi(str))
+	{
 	if (!(new = ft_memalloc(ft_strlen(str) + 2)))
 		return (NULL);
 	new[0] = '0';
 	ft_strcat(new, str);
 	free(str);
 	return (new);
-}
+	}
+	return(str);
+	
+	}
 
 void	ft_strtolower(char *str)
 {
@@ -148,4 +150,47 @@ char	*iszero(char *str, t_option *s, int i)
 	}
 	return (str);
 }
+/*
+char	*iszeroo(char *str, t_option *s, int i)
+{
+	char	*new;
+	int		len;
+
+	len = 0;
+	new = NULL;
+	if (s->precision > (int)ft_strlen(str))
+	{
+		if (!(new = ft_memalloc(s->precision + 1)))
+			return NULL;
+		new[s->precision - (int)ft_strlen(str)] = '\0';
+		ft_memset(new, '0', s->precision - (int)ft_strlen(str));
+	}
+	else if (s->precision == -1 && s->length > (int)ft_strlen(str))
+	{
+		if (!(new = ft_memalloc(s->length + 1 - s->plus - s->space)))
+			return NULL;
+		if (i != 1 || s->plus || s->hash)
+			len = s->length - s->plus - (int)ft_strlen(str) - s->space -(s->hash * 2);
+		else
+			len = s->length - s->plus - (int)ft_strlen(str) - i;
+		new[len] = '\0';
+		ft_memset(new, '0', len);
+		if (s->space && !s->plus && !s->zero)
+			new[0] = ' ';
+	}
+	if (new)
+	{
+		ft_strcat(new, str);
+		free(str);
+		return (new);
+	}
+	if (s->precision == 0 && ft_atoi(str) == 0)
+	{
+		new = ft_memalloc(2);
+		new[0] = '0';
+		return (new);
+	}
+	return (str);
+}
+*/
 

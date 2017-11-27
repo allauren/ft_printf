@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:27:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 06:20:09 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 21:29:53 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void				ft_strtolower(char *str);
 int					ft_stritostr(const char *str1, const char *str2);
 int					printf_p(va_list ap, t_option *s, t_size *l);
 int					ft_setoption(char *option, t_option *s, t_size *l);
+char				*iszeroo(char *str, t_option *s, int i);
 int					printf_numbers(va_list ap, t_option *s, t_size *l);
 char				*ft_isp(char *str);
 int					printf_unumbers(va_list ap, t_option *s, t_size *l);
