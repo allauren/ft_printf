@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 03:54:14 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 05:15:45 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,22 @@ int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 	i = 0;
 	tab[0] = set_struct('s', printf_string);
 	tab[1] = set_struct('d', printf_numbers);
-	tab[2] = set_struct('D', printf_numbers);
+	tab[2] = set_struct('D', printf_dnumbers);
 	tab[3] = set_struct('i', printf_numbers);
 	tab[4] = set_struct('u', printf_unumbers);
 	tab[5] = set_struct('U', printf_Unumbers);
 	tab[6] = set_struct('x', printf_hex);
 	tab[7] = set_struct('X', printf_HEX);
 	tab[8] = set_struct('o', printf_oct);
-	tab[9] = set_struct('O', printf_OCT);
+	tab[9] = set_struct('O', printf_oct);
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
 	tab[12] = set_struct('C', printf_char);
+	tab[12] = set_struct('p', printf_p);
 	tab[13] = set_struct('\0', NULL);
 	while (tab[i].c != c)
 		i++;
+	if(i < 13)
 	*ret += tab[i].f(ap, s, l);
 	return (1);
 }

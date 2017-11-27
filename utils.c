@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 18:19:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 04:30:21 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 04:21:54 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ unsigned long long ft_is_negative(long long nb)
 	}
 	return (0);
 }
+
+char				*ft_isp(char *str)
+{
+	char	*new;
+
+		if (!(new = ft_memalloc(ft_strlen(str) + 3)))
+			return (NULL);
+		new[0] = '0';
+		new[1] = 'X';
+		ft_strcat(new, str);
+		free(str);
+		return (new);
+	return (str);
+}
+
 
 char	*isplus(char *str, int *nb, t_option *s)
 {
