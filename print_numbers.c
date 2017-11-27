@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 17:50:39 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 04:17:25 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 06:15:56 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ int		printf_dnumbers(va_list ap, t_option *s, t_size *l)
 	int i;
 	char	*str;
 
-	(void)l;
-	num = va_arg(ap, long long) ;
+	num = ft_parsel_size(ap, l) ;
 	i = 0;
 	len = 0;
 	if (ft_is_negative(num) && (i = 1))
@@ -154,9 +153,9 @@ int		printf_Unumbers(va_list ap, t_option *s, t_size *l)
 	int i;
 	char	*str;
 
-	if (!l->l)
-		l->l = 1;
-	num = va_arg(ap, unsigned long long);
+	if (l->h)
+		l->h = 0;
+	num = ft_parseul_size(ap, l);
 	i = 0;
 	len = 0;
 	str = ft_itoa_base(num, 10);
@@ -250,7 +249,7 @@ int		printf_OCT(va_list ap, t_option *s, t_size *l)
 	int i;
 	char	*str;
 
-	num = ft_parse_size(ap, l) ;
+	num = ft_parseul_size(ap, l) ;
 	i = 0;
 	len = 0;
 	str = ft_itoa_base(num, 8);

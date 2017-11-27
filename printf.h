@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:27:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 18:32:47 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 06:03:54 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct	s_convert
 	int		(*f)(va_list ap, t_option *s, t_size *l);
 }				t_convert;
 typedef unsigned long long t_ull;
+unsigned long long	ft_parseul_size(va_list ap, t_size *l);
+unsigned long long	ft_parsel_size(va_list ap, t_size *l);
 char				*ft_itoa_base(unsigned long long jack, int base);
 unsigned long long	absolute_value(long long i);
 int					ft_sizenum(t_ull nb, int base);
