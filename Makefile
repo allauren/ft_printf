@@ -6,7 +6,7 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 22:27:21 by allauren          #+#    #+#              #
-#    Updated: 2017/11/29 22:36:09 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/29 23:31:22 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ $(NAME): $(LIBFT) $(OBJS) $(INCLUDES)
 	@printf "\r\033[K[PRINTF] \033[0;32mLinking...\033[0m"
 	@cp $(LIBFT) $(NAME)
 	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
 	@printf "\r\033[K[PRINTF] \033[0;32mDone!\033[0m\n"
 $(LIBFT):
 	@$(MAKE) -C libft/
