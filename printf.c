@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 13:46:04 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 22:27:02 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/27 23:19:22 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -31,6 +31,8 @@ int		ft_printf(const char* format, ...)
 			ret += (i - j - 1);
 			}
 			i += ft_parse(&format[i], ap, &ret);
+			if(ret == -1)
+				return (-1);
 			j = i;
 		}
 		else
@@ -44,16 +46,3 @@ int		ft_printf(const char* format, ...)
 	va_end(ap);
 	return (ret);
 }
-
-
-
-/*
-int main(void)
-{
-	int i = 0;
-	ft_printf("{% 03d}", -1);
-	i = printf("{% 03d}", -1);
-	printf("\n%d alors que la vraie est\n", i);
-	return 0;
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 23:24:12 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 00:21:43 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/11 04:08:45 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-typedef struct		s_atoi
-{
-	long			i;
-	long			jack;
-	int				neg;
-	int				j;
-	int				fin;
-}					t_atoi;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -43,7 +35,6 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 unsigned int		ft_strlen(const char *str);
 char				*ft_strdup(const char *s1);
-int					ft_atoi_base(const char *l, int base);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t n);
 char				*ft_strcat(char *s1, const char *s2);

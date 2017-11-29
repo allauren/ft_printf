@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stritostr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 16:38:07 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/28 20:48:18 by allauren         ###   ########.fr       */
+/*   Created: 2017/11/15 12:31:29 by allauren          #+#    #+#             */
+/*   Updated: 2017/11/15 12:33:30 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "printf.h"
-
-int	ft_stritostr(const char *str1, const char *str2)
+int main(int argc, const char *argv[])
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (str1[i])
-	{
-		j = -1;
-		while (str2[++j])
-		{
-			if (str1[i] == str2[j])
-				return (i);
-		}
-		i++;
-	}
-	return (-1);
+	ft_putstr(ft_itoabase(61440, 2));
+	ft_putchar('\n');
+	ft_putstr(ft_itoabase(27648, 2));
+	return 0;
 }

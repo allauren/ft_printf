@@ -6,13 +6,13 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/27 21:54:06 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 02:07:10 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-t_convert		set_struct(char c, int (*f)(va_list ap, t_option *s, t_size *l))
+t_convert	set_struct(char c, int (*f)(va_list ap, t_option *s, t_size *l))
 {
 	t_convert s;
 
@@ -21,9 +21,9 @@ t_convert		set_struct(char c, int (*f)(va_list ap, t_option *s, t_size *l))
 	return (s);
 }
 
-int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
+void		set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 {
-	t_convert	tab[15];
+	t_convert	tab[16];
 	int			i;
 
 	i = 0;
@@ -40,17 +40,15 @@ int				set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
 	tab[12] = set_struct('C', printf_char);
-	tab[12] = set_struct('p', printf_p);
-	tab[13] = set_struct('S', printf_string);
-	tab[14] = set_struct('\0', NULL);
-	while (tab[i].c != c)
+	tab[13] = set_struct('p', printf_p);
+	tab[14] = set_struct('S', printf_string);
+	tab[15] = set_struct('\0', NULL);
+	while ( i < 14 && tab[i].c != c)
 		i++;
-	if(i < 14)
-	*ret += tab[i].f(ap, s, l);
-	return (1);
+	*ret = (i < 15) ? *ret + tab[i].f(ap, s, l) : -1;
 }
 
-int				ft_parse(const char *format, va_list ap, int *ret)
+int			ft_parse(const char *format, va_list ap, int *ret)
 {
 	int			i;
 	char		*option;
@@ -63,6 +61,8 @@ int				ft_parse(const char *format, va_list ap, int *ret)
 	ft_bzero(&s, sizeof(t_option));
 	ft_bzero(&l, sizeof(t_size));
 	s.precision = -1;
+	if(ft_stritostr(format, TYPE) != -1)
+	{
 	len = ft_stritostr(format, TYPE);
 	option = ft_strsub(&format[i], i, len);
 	i += ft_setoption(option, &s, &l);
@@ -73,4 +73,7 @@ int				ft_parse(const char *format, va_list ap, int *ret)
 	set_function(ap, format[len], &s, &l, ret);
 	ft_memdel((void**)&option);
 	return (i + 1);
+	}
+	*ret = -1;
+	return (0);
 }

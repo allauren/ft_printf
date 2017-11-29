@@ -6,16 +6,47 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 10:42:50 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/26 04:20:33 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/28 21:13:57 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
 
+void	ft_putwchar_fd(wchar_t chr, int fd)
+{
+	if (chr <= 0x7F)
+		ft_putchar_fd(chr, fd);
+	else if (chr <= 0x7FF)
+	{
+		ft_putchar_fd((chr >> 6) + 0xC0, fd);
+		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+	}
+	else if (chr <= 0xFFFF)
+	{
+		ft_putchar_fd((chr >> 12) + 0xE0, fd);
+		ft_putchar_fd(((chr >> 6) & 0x3F) + 0x80, fd);
+		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+	}
+	else if (chr <= 0x10FFFF)
+	{
+		ft_putchar_fd((chr >> 18) + 0xF0, fd);
+		ft_putchar_fd(((chr >> 12) & 0x3F) + 0x80, fd);
+		ft_putchar_fd(((chr >> 6) & 0x3F) + 0x80, fd);
+		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+	}
+}
 void	printf_to_limit(char *str , int i)
 {
 	write(1, str, i);
 }
 
+void	printfw_to_limit(wchar_t *str , int i)
+{
+	int j;
+
+	j = -1;
+	while(++j <= (i - 1))
+		ft_putwchar_fd(str[j], 1);
+}
 void printf_carac(int len, char c)
 {
 	char *str;
@@ -51,13 +82,14 @@ int		printf_string(va_list ap, t_option *s, t_size *l)
 
 	(void)l;
 	str = va_arg(ap, char*);
+
 	if (!str)
 		str = ft_NULL(str);
+	str = ft_strdup(str);
 	if (s->precision != -1)
 		len = (((int)ft_strlen(str)) < s->precision) ? ft_strlen(str) : s->precision;
 	else
 		len = ft_strlen(str);
-//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
 	if (s->moins)
 	{
 		printf_to_limit(str, len);
@@ -70,6 +102,7 @@ int		printf_string(va_list ap, t_option *s, t_size *l)
 			printf_carac((s->length - len), ' ');
 		printf_to_limit(str, len);
 	}
+	ft_memdel((void**)&str);
 	return ((s->length > len) ? s->length : len);
 }
 
@@ -84,10 +117,8 @@ int		printf_pourcent(va_list ap, t_option *s, t_size *l)
 		return (-1);
 	str[0] = '%';
 	str[1] = '\0';
-	if (!str)
-		str = ft_NULL(str);
 	len = 1;
-//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
+	//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
 	if (s->moins)
 	{
 		printf_to_limit(str, len);
@@ -100,28 +131,29 @@ int		printf_pourcent(va_list ap, t_option *s, t_size *l)
 			printf_carac((s->length - len), ' ');
 		printf_to_limit(str, len);
 	}
+	ft_memdel((void**)&str);
 	return ((s->length > len) ? s->length : len);
 }
 
 int		printf_char(va_list ap, t_option *s, t_size *l)
 {
-	char	c;
-	char	*str;
+	wchar_t		c;
+	wchar_t		*str;
 	int		len;
 
 	(void)l;
-	c = va_arg(ap, int);
-	if (!(str = ft_memalloc(2)))
+	c = (char)va_arg(ap, int);
+	if (!(str = ft_memalloc(2 * sizeof(wchar_t))))
 		return (-1);
 	str[0] = c;
 	str[1] = '\0';
 	if (!str)
-		str = ft_NULL(str);
-		len = 1;
-//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
+		str = (wchar_t*)ft_NULL((char*)str);
+	len = 1;
+	//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
 	if (s->moins)
 	{
-		printf_to_limit(str, 1);
+		printfw_to_limit(str, 1);
 		if (s->length - len > 0)
 			printf_carac((s->length - len), ' ');
 	}
@@ -129,7 +161,8 @@ int		printf_char(va_list ap, t_option *s, t_size *l)
 	{
 		if (s->length - len > 0)
 			printf_carac((s->length - len), ' ');
-		printf_to_limit(str, 1);
+		printfw_to_limit(str, 1);
 	}
+	ft_memdel((void**)&str);
 	return ((s->length > len) ? s->length : len);
 }

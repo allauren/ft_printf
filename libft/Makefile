@@ -6,7 +6,7 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/06 00:46:43 by allauren          #+#    #+#              #
-#    Updated: 2017/11/25 05:52:51 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/29 00:02:19 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -36,6 +36,7 @@ SRC =ft_atoi.c\
 	ft_memdel.c\
 	ft_memmove.c\
 	ft_memset.c\
+	ft_atoi_base.c\
 	ft_putchar.c\
 	ft_putchar_fd.c\
 	ft_putendl.c\
