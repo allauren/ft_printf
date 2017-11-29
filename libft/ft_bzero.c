@@ -6,13 +6,14 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 23:26:18 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/09 01:17:59 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:06:02 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, '\0', n);
+	return (0);
 }

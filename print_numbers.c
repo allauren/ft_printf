@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 17:50:39 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 07:04:28 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:30:23 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,11 @@ int		printf_numbers(va_list ap, t_option *s, t_size *l)
 	else
 		i = 2;
 	str = ft_itoa_base(num, 10);
-	if (s->precision != -1 || s->zero != 0)
+	if (s->pre != -1 || s->zero != 0)
 		str = iszero(str, s, i, 10);
 	if (s->plus || i == 1 || s->space)
 		str = isplus(str, &i, s);
 	len = ft_strlen(str);
-	print_padding(s, str, len);
-	return ((s->length > len) ? s->length : len);
-}
-
-int		printf_p(va_list ap, t_option *s, t_size *l)
-{
-	int					len;
-	unsigned long long	num;
-	char				*str;
-
-	(void)l;
-	num = va_arg(ap, unsigned long long);
-	len = 0;
-	str = ft_itoa_base(num, 16);
-	if (s->precision != -1 || s->zero != 0)
-		str = iszero(str, s, 0, 16);
-	str = ft_isp(str);
-	len = ft_strlen(str);
-	ft_strtolower(str);
 	print_padding(s, str, len);
 	return ((s->length > len) ? s->length : len);
 }
@@ -87,7 +68,7 @@ int		printf_dnumbers(va_list ap, t_option *s, t_size *l)
 	else
 		i = 2;
 	str = ft_itoa_base(num, 10);
-	if (s->precision != -1 || s->zero != 0)
+	if (s->pre != -1 || s->zero != 0)
 		str = iszero(str, s, i, 10);
 	if (s->plus || i == 1 || s->space)
 		str = isplus(str, &i, s);
@@ -105,14 +86,14 @@ int		printf_unumbers(va_list ap, t_option *s, t_size *l)
 	num = ft_parseu_size(ap, l);
 	len = 0;
 	str = ft_itoa_base(num, 10);
-	if (s->precision != -1 || s->zero != 0)
+	if (s->pre != -1 || s->zero != 0)
 		str = iszero(str, s, 0, 10);
 	len = ft_strlen(str);
 	print_padding(s, str, len);
 	return ((s->length > len) ? s->length : len);
 }
 
-int		printf_Unumbers(va_list ap, t_option *s, t_size *l)
+int		printf_umnumbers(va_list ap, t_option *s, t_size *l)
 {
 	int			len;
 	long long	num;
@@ -121,82 +102,9 @@ int		printf_Unumbers(va_list ap, t_option *s, t_size *l)
 	num = ft_parseul_size(ap, l);
 	len = 0;
 	str = ft_itoa_base(num, 10);
-	if (s->precision != -1 || s->zero != 0)
+	if (s->pre != -1 || s->zero != 0)
 		str = iszeroh(str, s, 0, 10);
 	len = ft_strlen(str);
-	print_padding(s, str, len);
-	return ((s->length > len) ? s->length : len);
-}
-
-int		printf_HEX(va_list ap, t_option *s, t_size *l)
-{
-	int					len;
-	unsigned long long	num;
-	char				*str;
-
-	num = ft_parseu_size(ap, l);
-	len = 0;
-	str = ft_itoa_base(num, 16);
-	if (s->precision != -1 || s->zero != 0)
-		str = iszeroh(str, s, 0, 16);
-	if ( s->hash)
-		str = ft_ishash(str);
-	len = ft_strlen(str);
-	print_padding(s, str, len);
-	return ((s->length > len) ? s->length : len);
-}
-
-int		printf_hex(va_list ap, t_option *s, t_size *l)
-{
-	int					len;
-	unsigned long long	num;
-	char				*str;
-
-	num = ft_parseu_size(ap, l);
-	len = 0;
-	str = ft_itoa_base(num, 16);
-	if (s->precision != -1 || s->zero != 0)
-		str = iszeroh(str, s, 0, 16);
-	if (str && s->hash)
-		str = ft_ishash(str);
-	len = ft_strlen(str);
-	ft_strtolower(str);
-	print_padding(s, str, len);
-	return ((s->length > len) ? s->length : len);
-}
-int		printf_OCT(va_list ap, t_option *s, t_size *l)
-{
-	int					len;
-	unsigned long long	num;
-	char				*str;
-
-	num = ft_parseul_size(ap, l);
-	len = 0;
-	str = ft_itoa_base(num, 8);
-	if (s->precision > 0 || (s->precision != -1 && !s->hash) || s->zero != 0)
-		str = iszeroo(str, s, 0);
-	if (s->hash && ft_atoi(str))
-		str = ft_ishasho(str);
-	len = ft_strlen(str);
-	print_padding(s, str, len);
-	return ((s->length > len) ? s->length : len);
-}
-
-int		printf_oct(va_list ap, t_option *s, t_size *l)
-{
-	int					len;
-	unsigned long long	num;
-	char				*str;
-
-	num = ft_parseu_size(ap, l);
-	len = 0;
-	str = ft_itoa_base(num, 8);
-	if (s->precision > 0 || (s->precision != -1 && !s->hash) || s->zero != 0)
-		str = iszeroo(str, s, 0);
-	if (s->hash && ft_atoi(str))
- 		str = ft_ishasho(str);
-	len = ft_strlen(str);
-	ft_strtolower(str);
 	print_padding(s, str, len);
 	return ((s->length > len) ? s->length : len);
 }

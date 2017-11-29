@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 02:07:10 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:30:30 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_convert	set_struct(char c, int (*f)(va_list ap, t_option *s, t_size *l))
 	return (s);
 }
 
-void		set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
+int			set_function(va_list ap, char c, t_option *s, t_size *l)
 {
 	t_convert	tab[16];
 	int			i;
@@ -32,20 +32,20 @@ void		set_function(va_list ap, char c, t_option *s, t_size *l, int *ret)
 	tab[2] = set_struct('D', printf_dnumbers);
 	tab[3] = set_struct('i', printf_numbers);
 	tab[4] = set_struct('u', printf_unumbers);
-	tab[5] = set_struct('U', printf_Unumbers);
+	tab[5] = set_struct('U', printf_umnumbers);
 	tab[6] = set_struct('x', printf_hex);
-	tab[7] = set_struct('X', printf_HEX);
+	tab[7] = set_struct('X', printf_hexm);
 	tab[8] = set_struct('o', printf_oct);
-	tab[9] = set_struct('O', printf_OCT);
+	tab[9] = set_struct('O', printf_octm);
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
 	tab[12] = set_struct('C', printf_char);
 	tab[13] = set_struct('p', printf_p);
 	tab[14] = set_struct('S', printf_string);
 	tab[15] = set_struct('\0', NULL);
-	while ( i < 14 && tab[i].c != c)
+	while (i < 14 && tab[i].c != c)
 		i++;
-	*ret = (i < 15) ? *ret + tab[i].f(ap, s, l) : -1;
+	return ((i < 15) ? tab[i].f(ap, s, l) : -1);
 }
 
 int			ft_parse(const char *format, va_list ap, int *ret)
@@ -57,22 +57,20 @@ int			ft_parse(const char *format, va_list ap, int *ret)
 	t_size		l;
 
 	i = 0;
-	(void)ap;
-	ft_bzero(&s, sizeof(t_option));
-	ft_bzero(&l, sizeof(t_size));
-	s.precision = -1;
-	if(ft_stritostr(format, TYPE) != -1)
+	i += ft_bzero(&s, sizeof(t_option)) + ft_bzero(&l, sizeof(t_size));
+	s.pre = -1;
+	if (ft_stritostr(format, TYPE) != -1)
 	{
-	len = ft_stritostr(format, TYPE);
-	option = ft_strsub(&format[i], i, len);
-	i += ft_setoption(option, &s, &l);
-	if (s.moins)
-		s.zero = 0;
-	if (s.plus)
-		s.space = 0;
-	set_function(ap, format[len], &s, &l, ret);
-	ft_memdel((void**)&option);
-	return (i + 1);
+		len = ft_stritostr(format, TYPE);
+		option = ft_strsub(&format[i], i, len);
+		i += ft_setoption(option, &s, &l);
+		if (s.moins)
+			s.zero = 0;
+		if (s.plus)
+			s.space = 0;
+		*ret += set_function(ap, format[len], &s, &l);
+		ft_memdel((void**)&option);
+		return (i + 1);
 	}
 	*ret = -1;
 	return (0);

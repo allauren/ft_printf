@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:27:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 06:19:08 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:35:28 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct	s_option
 	int		zero;
 	int		quote;
 	int		length;
-	int		precision;
+	int		pre;
 }				t_option;
 typedef struct	s_size
 {
@@ -43,6 +43,7 @@ typedef struct	s_convert
 typedef unsigned long long t_ull;
 unsigned long long	ft_parseul_size(va_list ap, t_size *l);
 unsigned long long	ft_parsel_size(va_list ap, t_size *l);
+void				print_padding(t_option *s, char *str, int len);
 char				*ft_itoa_base(unsigned long long jack, int base);
 unsigned long long	absolute_value(long long i);
 int					ft_sizenum(t_ull nb, int base);
@@ -67,13 +68,14 @@ int					printf_numbers(va_list ap, t_option *s, t_size *l);
 char				*ft_isp(char *str);
 int					printf_unumbers(va_list ap, t_option *s, t_size *l);
 void				printf_to_limit(char *str, int i);
-int					printf_OCT(va_list ap, t_option *s, t_size *l);
+int					printf_octm(va_list ap, t_option *s, t_size *l);
 int					printf_dnumbers(va_list ap, t_option *s, t_size *l);
-int					printf_Unumbers(va_list ap, t_option *s, t_size *l);
+int					printf_umnumbers(va_list ap, t_option *s, t_size *l);
 int					printf_oct(va_list ap, t_option *s, t_size *l);
-int					printf_HEX(va_list ap, t_option *s, t_size *l);
+int					printf_hexm(va_list ap, t_option *s, t_size *l);
 char				*iszeroh(char *str, t_option *s, int i, int base);
 int					printf_hex(va_list ap, t_option *s, t_size *l);
+char				*ft_ishash(char *str);
 char				*ft_ishasho(char *str);
 unsigned long long	ft_parse_size(va_list ap, t_size *l);
 unsigned long long	ft_parseu_size(va_list ap, t_size *l);

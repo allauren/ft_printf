@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 10:43:23 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 02:09:00 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:30:36 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				ft_setoption(char *option, t_option *s, t_size *l)
 		while (option[i] && !set_taille(&option[i], l) && option[i] != '.')
 			i++;
 		if (option[i] == '.' && ((s->zero = 0) + 1))
-			s->precision = ft_atoi(&option[++i]);
+			s->pre = ft_atoi(&option[++i]);
 		while (option[i] && !set_taille(&option[i], l))
 			i++;
 		while (option[i] && set_taille(&option[i], l))

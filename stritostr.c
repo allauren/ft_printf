@@ -6,13 +6,13 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:38:07 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/28 20:48:18 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 22:24:17 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_stritostr(const char *str1, const char *str2)
+int					ft_stritostr(const char *str1, const char *str2)
 {
 	int i;
 	int j;
@@ -29,4 +29,30 @@ int	ft_stritostr(const char *str1, const char *str2)
 		i++;
 	}
 	return (-1);
+}
+
+int					ft_sizenum(t_ull nb, int base)
+{
+	int		i;
+
+	i = 0;
+	while ((nb = nb / base))
+		i++;
+	i++;
+	return (i);
+}
+
+unsigned long long	absolute_value(long long i)
+{
+	return ((~0 ^ (unsigned long long)i) + 1);
+}
+
+void				ft_strtolower(char *str)
+{
+	unsigned int i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] >= 'A' && str[i])
+			str[i] = ft_tolower(str[i]);
 }
