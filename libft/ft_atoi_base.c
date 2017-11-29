@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 01:38:15 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 05:35:27 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 07:05:08 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static void	ft_put_int(char *str, int base, int i, long *jack)
 {
-
 	*jack = *jack * base;
 	if (str[i] >= '0' && str[i] <= '9')
 		*jack = str[i] - '0' + *jack;
@@ -32,7 +31,7 @@ int			ft_atoi_base(const char *l, int base)
 		'a', 'b', 'c', 'd', 'e', 'f'};
 
 	ft_bzero(&s, sizeof(t_atoi));
-	while (l[s.i] < 32)
+	while (l[s.i] && l[s.i] < 32)
 		s.i++;
 	if ((s.neg = 1) && l[s.i] == '-')
 		s.neg = -1;

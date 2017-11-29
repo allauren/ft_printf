@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 18:19:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 05:42:22 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 07:04:26 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char				*ft_isp(char *str)
 	char	*new;
 
 	if (!(new = ft_memalloc(ft_strlen(str) + 3)))
-		return (NULL);
+		exit (-1);
 	new[0] = '0';
 	new[1] = 'X';
 	ft_strcat(new, str);
@@ -54,7 +54,7 @@ char	*isplus(char *str, int *nb, t_option *s)
 	char	*new;
 
 	if (!(new = ft_memalloc(ft_strlen(str) - s->zero + 1)))
-		return (NULL);
+		exit (-1);
 	if (*nb == 1)
 		new[0] = '-';
 	else if (s->space)
@@ -73,7 +73,7 @@ char	*ft_ishash(char *str)
 	if (ft_atoi_base(str, 16))
 	{
 		if (!(new = ft_memalloc(ft_strlen(str) + 3)))
-			return (NULL);
+			exit (-1);
 		new[0] = '0';
 		new[1] = 'X';
 		ft_strcat(new, str);
@@ -88,7 +88,7 @@ char	*ft_ishasho(char *str)
 	char	*new;
 
 		if (!(new = ft_memalloc(ft_strlen(str) + 2)))
-			return (NULL);
+			exit (-1);
 		new[0] = '0';
 		ft_strcat(new, str);
 		free(str);
@@ -109,8 +109,8 @@ char	*set_zero(t_option *s, char *str, int len, int i)
 {
 	char	*new;
 
-	if (!(new = ft_memalloc(s->length + 1 - s->plus)))
-		return (NULL);
+	if (!(new = ft_memalloc(s->length + 2 - s->plus)))
+		exit (-1);
 	if (i != 1 || s->plus || (s->hash && ft_atoi_base(str, 16)))
 		len = s->length - s->plus - (int)ft_strlen(str);
 	else
@@ -135,7 +135,7 @@ char	*iszero(char *str, t_option *s, int i, int base)
 	if (s->precision > (int)ft_strlen(str))
 	{
 		if (!(new = ft_memalloc(s->precision + 1)))
-			return (NULL);
+			exit (-1);
 		new[s->precision - (int)ft_strlen(str)] = '\0';
 		ft_memset(new, '0', s->precision - (int)ft_strlen(str));
 	}
@@ -159,8 +159,8 @@ char	*set_zeroh(t_option *s, char *str, int len, int i)
 {
 	char	*new;
 
-	if (!(new = ft_memalloc(s->length + 1 - s->plus)))
-		return (NULL);
+	if (!(new = ft_memalloc(s->length + 5 - s->plus)))
+		exit (-1);
 	if (i != 0 || s->plus || (s->hash && ft_atoi_base(str, 16)))
 		len = s->length - s->plus - (int)ft_strlen(str) - s->hash * 2;
 	else
@@ -185,8 +185,8 @@ char	*iszeroh(char *str, t_option *s, int i, int base)
 	new = NULL;
 	if (s->precision > (int)ft_strlen(str))
 	{
-		if (!(new = ft_memalloc(s->precision + 1)))
-			return (NULL);
+		if (!(new = ft_memalloc(s->precision + 5)))
+			exit (-1);
 		new[s->precision - (int)ft_strlen(str)] = '\0';
 		ft_memset(new, '0', s->precision - (int)ft_strlen(str));
 	}
@@ -200,7 +200,10 @@ char	*iszeroh(char *str, t_option *s, int i, int base)
 	}
 	if (s->precision == 0 && ft_atoi_base(str, base) == 0)
 	{
-		return (new = ft_memalloc(1));
+		if(!(new = ft_memalloc(sizeof(char) * 1)))
+			exit (-1);
+		free(str);
+		return (new);
 	}
 	return (str);
 }
@@ -210,9 +213,9 @@ char	*set_zeroo(t_option *s, char *str, int len, int i)
 	char	*new;
 
 	if (!(new = ft_memalloc(s->length + 1 - s->plus)))
-		return (NULL);
+		exit (-1);
 	if (i != 1 || s->plus || s->hash)
-		len = s->length - s->plus - (int)ft_strlen(str) - s->hash;
+	len = s->length - s->plus - (int)ft_strlen(str) - s->hash;
 	else
 		len = s->length - s->plus - (int)ft_strlen(str) - i;
 	new[len] = '\0';
@@ -237,7 +240,7 @@ char	*iszeroo(char *str, t_option *s, int i)
 	if (s->precision > (int)ft_strlen(str))
 	{
 		if (!(new = ft_memalloc(s->precision + 1)))
-			return (NULL);
+			exit (-1);
 		new[s->precision - (int)ft_strlen(str)] = '\0';
 		ft_memset(new, '0', s->precision - (int)ft_strlen(str));
 		s->hash = 0;

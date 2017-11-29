@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 20:32:27 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 05:56:26 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 06:46:51 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int main(void)
 {
 	int i = 0;
 	int j = 0;
-   j = ft_printf("toto %##.0xet %#.X%###.1x", 0, 0, 0);
-   i = printf("toto %##.0xet %#.X%###.1x", 0, 0, 0);
-	printf("%d alors que la vraie est %d\n",j,  i);
+   j =ft_printf("%#.X", 0, 0, 0);
+   i = printf("%#.X", 0);
+	printf("\n%d alors que la vraie est %d\n",j,  i);
 	return 0;
 }
 /*ft_connect_stdout(pfd, &save_stdout);

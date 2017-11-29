@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 17:50:39 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 06:00:09 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 07:04:28 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		printf_HEX(va_list ap, t_option *s, t_size *l)
 	str = ft_itoa_base(num, 16);
 	if (s->precision != -1 || s->zero != 0)
 		str = iszeroh(str, s, 0, 16);
-	if (s->hash)
+	if ( s->hash)
 		str = ft_ishash(str);
 	len = ft_strlen(str);
 	print_padding(s, str, len);
@@ -157,7 +157,7 @@ int		printf_hex(va_list ap, t_option *s, t_size *l)
 	str = ft_itoa_base(num, 16);
 	if (s->precision != -1 || s->zero != 0)
 		str = iszeroh(str, s, 0, 16);
-	if (s->hash)
+	if (str && s->hash)
 		str = ft_ishash(str);
 	len = ft_strlen(str);
 	ft_strtolower(str);

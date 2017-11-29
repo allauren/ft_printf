@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 10:42:50 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/28 21:13:57 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/29 06:35:28 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -113,11 +113,13 @@ int		printf_pourcent(va_list ap, t_option *s, t_size *l)
 
 	(void)l;
 	(void)ap;
-	if (!(str = ft_memalloc(2)))
-		return (-1);
+	if (!(str = ft_memalloc(sizeof(char) * 2)))
+		exit(-1);
 	str[0] = '%';
 	str[1] = '\0';
-	len = 1;
+	if(s->zero != 0)
+		str = iszero(str, s, 0, 10);
+	len = ft_strlen(str);
 	//	printf("\nje passe ici et je vaus %s et len est %d et la precision est de %d\n", str, len, s->precision);
 	if (s->moins)
 	{

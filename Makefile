@@ -6,7 +6,7 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 22:27:21 by allauren          #+#    #+#              #
-#    Updated: 2017/11/28 03:37:01 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/29 06:30:50 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS2 = options.c print_numbers.c string.c   utils.c utils2.c\
 	   ft_itoabase.c main.c  parsing.c  printf.c stritostr.c 
 
 CFLAGS =-g3 -c -Wall -Wextra -Werror
-FLAGS  = -g3 -Wall -Wextra 
+FLAGS  = -g3 -Wall -Wextra -fsanitize=address 
 TEST = printf
 INCLUDES = printf.h
 CC = gcc
