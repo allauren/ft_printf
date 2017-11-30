@@ -6,17 +6,18 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 00:44:53 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/07 23:52:57 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/30 05:34:12 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+int	ft_memdel(void **ap)
 {
 	if (ap && *ap)
 	{
 		free(*ap);
 		*ap = NULL;
 	}
+	return(0);
 }

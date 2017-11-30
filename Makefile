@@ -6,17 +6,17 @@
 #    By: allauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 22:27:21 by allauren          #+#    #+#              #
-#    Updated: 2017/11/29 23:31:22 by allauren         ###   ########.fr        #
+#    Updated: 2017/11/30 03:45:03 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = options.c print_numbers.c string.c   utils.c utils2.c\
 		ft_itoabase.c  parsing.c  printf.c stritostr.c conv_base.c\
-		utilshexa.c char.c hash.c
+		utilshexa.c char.c hash.c wchar.c
 
 SRCS2 = options.c print_numbers.c string.c  utils.c utils2.c\
 	   ft_itoabase.c main.c  parsing.c  printf.c stritostr.c\
-		conv_base.c utilshexa.c hash.c char.c
+		conv_base.c utilshexa.c hash.c char.c wchar.c
 
 CFLAGS =-g3 -c -Wall -Wextra -Werror
 FLAGS  = -g3 -Wall -Wextra -fsanitize=address 

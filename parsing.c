@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:10:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 22:30:30 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/30 10:34:44 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int			set_function(va_list ap, char c, t_option *s, t_size *l)
 	tab[9] = set_struct('O', printf_octm);
 	tab[10] = set_struct('%', printf_pourcent);
 	tab[11] = set_struct('c', printf_char);
-	tab[12] = set_struct('C', printf_char);
+	tab[12] = set_struct('C', printf_wchar);
 	tab[13] = set_struct('p', printf_p);
-	tab[14] = set_struct('S', printf_string);
+	tab[14] = set_struct('S', printf_wstr);
 	tab[15] = set_struct('\0', NULL);
 	while (i < 14 && tab[i].c != c)
 		i++;
@@ -55,8 +55,10 @@ int			ft_parse(const char *format, va_list ap, int *ret)
 	int			len;
 	t_option	s;
 	t_size		l;
+	int j;
 
 	i = 0;
+	j = 0;
 	i += ft_bzero(&s, sizeof(t_option)) + ft_bzero(&l, sizeof(t_size));
 	s.pre = -1;
 	if (ft_stritostr(format, TYPE) != -1)
@@ -68,8 +70,10 @@ int			ft_parse(const char *format, va_list ap, int *ret)
 			s.zero = 0;
 		if (s.plus)
 			s.space = 0;
-		*ret += set_function(ap, format[len], &s, &l);
-		ft_memdel((void**)&option);
+		j = *ret;
+		*ret += set_function(ap, format[len], &s, &l) + ft_memdel((void**)&option);
+		if(j > *ret)
+			*ret = -1;
 		return (i + 1);
 	}
 	*ret = -1;

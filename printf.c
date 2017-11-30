@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 13:46:04 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 22:38:26 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:33:48 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_printf(const char *format, ...)
 	j = 0;
 	ret = 0;
 	va_start(ap, format);
-	while (format[i])
+	while (format && format[i])
 	{
 		if (format[i] == '%' && format[i + 1])
 		{

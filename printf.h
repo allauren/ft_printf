@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:27:47 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 22:35:28 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:33:15 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 # include <stdio.h>
+# include <wchar.h>
+# include <locale.h>
 # define TYPE  "sSpdDioOuUxXcC%"
-
 typedef struct	s_option
 {
 	int		hash;
@@ -35,6 +36,13 @@ typedef struct	s_size
 	int		j;
 	int		z;
 }				t_size;
+typedef struct	s_init
+{
+	int		h;
+	int		l;
+	int		j;
+	int		z;
+}				t_init;
 typedef struct	s_convert
 {
 	char	c;
@@ -44,6 +52,7 @@ typedef unsigned long long t_ull;
 unsigned long long	ft_parseul_size(va_list ap, t_size *l);
 unsigned long long	ft_parsel_size(va_list ap, t_size *l);
 void				print_padding(t_option *s, char *str, int len);
+int					ft_printf(const char *format, ...);
 char				*ft_itoa_base(unsigned long long jack, int base);
 unsigned long long	absolute_value(long long i);
 int					ft_sizenum(t_ull nb, int base);
@@ -76,7 +85,10 @@ int					printf_hexm(va_list ap, t_option *s, t_size *l);
 char				*iszeroh(char *str, t_option *s, int i, int base);
 int					printf_hex(va_list ap, t_option *s, t_size *l);
 char				*ft_ishash(char *str);
+int					printf_wchar(va_list ap, t_option *s, t_size *l);
 char				*ft_ishasho(char *str);
+char				*ft_null();
 unsigned long long	ft_parse_size(va_list ap, t_size *l);
 unsigned long long	ft_parseu_size(va_list ap, t_size *l);
+int					printf_wstr(va_list ap, t_option *s, t_size *l);
 #endif

@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 23:24:12 by allauren          #+#    #+#             */
-/*   Updated: 2017/11/29 22:07:11 by allauren         ###   ########.fr       */
+/*   Updated: 2017/11/30 05:34:37 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
-void				ft_memdel(void **ap);
+int				ft_memdel(void **ap);
 unsigned int		ft_strlen(const char *str);
 char				*ft_strdup(const char *s1);
 int					ft_atoi_base(const char *l, int base);
